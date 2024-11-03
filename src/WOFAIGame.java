@@ -128,11 +128,30 @@ public class WOFAIGame extends WheelOfFortune{
         // Display records using AllGamesRecord methods
         System.out.println();
         System.out.println("Here is AI game performance: ");
+        System.out.println("Each player high scores list as follows: ");
+
+        //display highGameList for each player (showing all 3 games)
+        //display average of each player (contest)
+        for(WheelOfFortunePlayer aiplayer:aiPlayers){
+            System.out.println("High Scores for "+aiplayer.playerId()+": ");
+            List<GameRecord> highScores =record.highGameList(aiplayer.playerId(), 3);
+            for(GameRecord highScore:highScores){
+                System.out.println(highScore);
+            }
+            System.out.println("Average Score for " + aiplayer.playerId()+": "+record.average(aiplayer.playerId()));
+            System.out.println();
+        }
+
         System.out.println();
+
+        //display average of all nine games
         System.out.println("Total Average Scores: "+record.average());
         System.out.println();
-        System.out.println("Your high scores list as follows: ");
-        System.out.println(record.highGameList(9));
+
+        System.out.println("All players high scores list as follows: ");
+        System.out.println(record.highGameList(3));
+        System.out.println();
+
 
     }
 
