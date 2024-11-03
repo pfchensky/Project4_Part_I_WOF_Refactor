@@ -1,15 +1,17 @@
 public class SequentialAIPlayer implements WheelOfFortunePlayer{
-    private char currentGuess;
+    private int currentIndex;
     private String id;
 
     public SequentialAIPlayer(String id) {
         this.id = id;
-        reset();
+        this.currentIndex = 0;
     }
 
     @Override
     public char nextGuess() {
-        return currentGuess <= 'z' ? currentGuess++ : ' ';
+        char guess = (char) ('a' + currentIndex);
+        currentIndex = (currentIndex + 1) % 26;
+        return guess;
     }
 
     @Override
@@ -19,7 +21,6 @@ public class SequentialAIPlayer implements WheelOfFortunePlayer{
 
     @Override
     public void reset() {
-        currentGuess = 'a';
+        currentIndex = 0; // reset to start
     }
-
 }

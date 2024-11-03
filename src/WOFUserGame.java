@@ -35,6 +35,6 @@ public class WOFUserGame extends WheelOfFortune{
         System.out.println("Here is your game performance: ");
         System.out.println("Total Average Scores: "+record.average());
         System.out.println("Your high scores list as follows: ");
-        System.out.println(record.highGameList(3));
+        System.out.println(record.highGameList(2));
     }
 }

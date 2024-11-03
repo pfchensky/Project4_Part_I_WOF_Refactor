@@ -20,7 +20,7 @@ public class AllGamesRecord {
             totalScore=totalScore+gameRecord.score;
         }
         double ave=totalScore/gameRecords.size();
-        return ave;
+        return Math.round(ave * 100.0) / 100.0;
     }
 
    public double average(String playerId){
@@ -33,7 +33,7 @@ public class AllGamesRecord {
            }
        }
        double aveID=totalScoreID/count;
-       return aveID;
+       return Math.round(aveID * 100.0) / 100.0;
    }
 
     public ArrayList<GameRecord> highGameList(int n){
@@ -52,5 +52,30 @@ public class AllGamesRecord {
         return new ArrayList<>(playerScore.subList(0,n));
 
     }
+    @Override
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("All Game Records:\n");
+        for(GameRecord gameRecord :gameRecords){
+            sb.append(gameRecord.toString()).append("\n");
+        }
+        return sb.toString();
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        AllGamesRecord other = (AllGamesRecord) obj;
+        return gameRecords.equals(other.gameRecords);
+    }
+
+    @Override
+    public int hashCode() {
+        return gameRecords.hashCode();
+    }
 }

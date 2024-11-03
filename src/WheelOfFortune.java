@@ -12,6 +12,7 @@ public abstract class WheelOfFortune extends Game{
     protected StringBuilder hiddenPhrase;
     protected String preGuess;
     protected int count;
+    //protected List<String> phraseList;
 
     //Constructor without parameters
     public WheelOfFortune(){
@@ -78,6 +79,9 @@ public abstract class WheelOfFortune extends Game{
     // Main game to loop method
     @Override
     public GameRecord play(){
+        // Reset data members for a new game
+        this.preGuess="";
+        this.count=100;
         randomPhrase();
         generateHiddenPhrase();
 
@@ -85,7 +89,7 @@ public abstract class WheelOfFortune extends Game{
             char guess =getGuess(preGuess);
             processGuess(guess);
             count--;
-            System.out.println("you have "+count+ " chances");
+            System.out.println("Your current score is "+count+".");
         }
 
         if(phrase.equals(hiddenPhrase.toString())){
