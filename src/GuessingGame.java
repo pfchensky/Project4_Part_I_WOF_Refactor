@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * the superclass
+ */
+
 public abstract class GuessingGame extends Game{
     //Instance variables
     protected String phrase;
