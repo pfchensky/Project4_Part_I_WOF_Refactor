@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public abstract class WheelOfFortune extends Game{
+public abstract class WheelOfFortune extends GuessingGame{
     abstract char getGuess(String previousGuesses);
     //Instance variables
-    protected String phrase;
-    protected StringBuilder hiddenPhrase;
+    //protected String phrase;
+    //protected StringBuilder hiddenPhrase;
     protected String preGuess;
-    protected int count;
+    //protected int count;
     //protected List<String> phraseList;
 
     //Constructor without parameters
     public WheelOfFortune(){
+        super();
         this.preGuess="";
-        this.count = 100;
+        this.count=100;
     }
 
     // instance method
@@ -37,7 +38,7 @@ public abstract class WheelOfFortune extends Game{
 
     }
 
-
+    @Override
     public void generateHiddenPhrase(){
         //Get a hidden phrase
         this.hiddenPhrase=new StringBuilder("");
@@ -54,7 +55,6 @@ public abstract class WheelOfFortune extends Game{
         System.out.println(hiddenPhrase);
     }
 
-
     public void processGuess(char guess) {
 
 
@@ -70,8 +70,7 @@ public abstract class WheelOfFortune extends Game{
         }
 
         else{
-            System.out.println("your guess wrong");
-            System.out.println("please make another guess");
+            System.out.println("your guess wrong,please make another guess");
             System.out.println(hiddenPhrase);
         }
     }
@@ -82,23 +81,38 @@ public abstract class WheelOfFortune extends Game{
         // Reset data members for a new game
         this.preGuess="";
         this.count=100;
+        int score=INITIAL_SCORE;
         randomPhrase();
         generateHiddenPhrase();
 
-        while(!phrase.equals(hiddenPhrase.toString()) && count>0) {
+
+        while(!phrase.equals(hiddenPhrase.toString()) && count>0 && score>0) {
             char guess =getGuess(preGuess);
+            String originalHiddenPhrase = hiddenPhrase.toString();
+
             processGuess(guess);
+
+            // 检查是否揭开了新字符
+            if (hiddenPhrase.toString().equals(originalHiddenPhrase)) {
+                score -= SCORE_DEDUCTION; // 只有在猜错时才扣分
+                System.out.println("Incorrect guess. Score deducted. Current score: " + score);
+            } else {
+                System.out.println("Correct guess! Your current score remains: " + score);
+            }
+
             count--;
-            System.out.println("Your current score is "+count+".");
+            System.out.println("Remaining attempts: " + count);
         }
 
-        if(phrase.equals(hiddenPhrase.toString())){
-            System.out.println("Congratulations! You win!");
-        }
-        else {
+        if (phrase.equals(hiddenPhrase.toString())) {
+            System.out.println("Congratulations! You win! Your final score is " + score + ".");
+        } else if (score <= 0) {
+            System.out.println("Game over! You've run out of score.");
+        } else {
             System.out.println("Please start a new game!");
         }
-        return new GameRecord(count,"Player1");
+
+        return new GameRecord(score,"Player1");
     }
 
     @Override
