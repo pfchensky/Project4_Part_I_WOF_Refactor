@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Use AI to generate the letter to play the wof game
 public class WOFAIGame extends WheelOfFortune{
 
     private List<WheelOfFortunePlayer> players;// List of AI players
@@ -24,11 +24,13 @@ public class WOFAIGame extends WheelOfFortune{
         this.players.add(player);
         this.phraseList=new ArrayList<>();
     }
+    //Constructor that accepts a list AI Player
     public WOFAIGame(List<WheelOfFortunePlayer> players){
         this.players=players;
         this.phraseList=new ArrayList<>();
     }
 
+    // method to get a phrase
     public void getPhrase() {
         //List<String> phraseList = null;
 
@@ -52,6 +54,7 @@ public class WOFAIGame extends WheelOfFortune{
         //phraseIndex++;
     }
 
+    // Method to play this game
     @Override
     public GameRecord play(){
         getPhrase();
@@ -85,6 +88,7 @@ public class WOFAIGame extends WheelOfFortune{
         return new GameRecord(count > 0 ? count : 0, currentPlayer.playerId());
 
     }
+    // method to decide weather to play the next game
     @Override
     public boolean playNext() {
         // Have the current player guess each phrase in sequence
@@ -107,7 +111,7 @@ public class WOFAIGame extends WheelOfFortune{
     }
 
 
-
+    // method to get a guess
     @Override
     public char getGuess(String previousGuesses) {
         WheelOfFortunePlayer currentPlayer= players.get(currentPlayerIndex);

@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
+// class to play in the command line to and need user input to play this game
 public class WOFUserGame extends WheelOfFortune{
-
+    //method to get a guess
     public char getGuess(String previousGuesses){
         System.out.print("Please guess a letter in the phrase: ");
         Scanner in=new Scanner(System.in);

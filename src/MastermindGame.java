@@ -1,11 +1,13 @@
 import java.util.Random;
 import java.util.Scanner;
 
+// this class is a guessing game to guess the weather the colour is correct
 public class MastermindGame extends GuessingGame {
     private static final char[] COLORS = {'R', 'G', 'B', 'Y', 'O', 'P'};
     private static final int CODESIZE = 4;
     private String secretCode;
 
+    //constructor to initialize
     public MastermindGame() {
         super();
         this.count = 10;
@@ -20,9 +22,10 @@ public class MastermindGame extends GuessingGame {
             code.append(COLORS[j]);
         }
         this.secretCode = code.toString();
-        System.out.println("Secret code generated! " + secretCode);
+        //System.out.println("Secret code generated! " + secretCode);
     }
 
+    //Generate the secret code
     @Override
     public void generateHiddenPhrase() {
         StringBuilder hiddenPhrase = new StringBuilder();
@@ -33,7 +36,7 @@ public class MastermindGame extends GuessingGame {
     }
 
     //public void processGuess(char guess) {}
-
+    //check the exact match numbers
     public int checkExacts(String guess) {
         int exacts = 0;
         StringBuilder secretSB = new StringBuilder(secretCode);
@@ -48,7 +51,7 @@ public class MastermindGame extends GuessingGame {
         }
         return exacts;
     }
-
+    //check the partial match numbers
     public int checkPartials(String guess) {
         int partials = 0;
         StringBuilder secretSB = new StringBuilder(secretCode);
@@ -77,15 +80,17 @@ public class MastermindGame extends GuessingGame {
         return partials;
     }
 
+    //method to play the game
     @Override
     public GameRecord play() {
         generateSecretCode();
+        count=10;
         Scanner scanner = new Scanner(System.in);
         int exacts=0;
 
         int score=INITIAL_SCORE;
         while (count > 0) {
-            System.out.print("Enter your 4-color guess (e.g., RGBY): ");
+            System.out.print("Enter your 4-color guess from these six letter(RGBYOP)(e.g., RGBY): ");
             String guess = scanner.nextLine().toUpperCase();
 
             if (guess.length() != CODESIZE || !guess.matches("[RGBYOP]+")) {

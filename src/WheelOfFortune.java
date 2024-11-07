@@ -3,16 +3,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
+//WOF game to guess a phrase
 public abstract class WheelOfFortune extends GuessingGame{
     abstract char getGuess(String previousGuesses);
-    //Instance variables
-    //protected String phrase;
-    //protected StringBuilder hiddenPhrase;
     protected String preGuess;
-    //protected int count;
-    //protected List<String> phraseList;
 
     //Constructor without parameters
     public WheelOfFortune(){
@@ -37,7 +32,7 @@ public abstract class WheelOfFortune extends GuessingGame{
         this.phrase = phraseList.get(r);
 
     }
-
+    //Method to generate hidden phrase
     @Override
     public void generateHiddenPhrase(){
         //Get a hidden phrase
@@ -55,6 +50,7 @@ public abstract class WheelOfFortune extends GuessingGame{
         System.out.println(hiddenPhrase);
     }
 
+    //method to processGuess
     public void processGuess(char guess) {
 
 
@@ -92,9 +88,8 @@ public abstract class WheelOfFortune extends GuessingGame{
 
             processGuess(guess);
 
-            // 检查是否揭开了新字符
             if (hiddenPhrase.toString().equals(originalHiddenPhrase)) {
-                score -= SCORE_DEDUCTION; // 只有在猜错时才扣分
+                score -= SCORE_DEDUCTION;
                 System.out.println("Incorrect guess. Score deducted. Current score: " + score);
             } else {
                 System.out.println("Correct guess! Your current score remains: " + score);
@@ -114,13 +109,12 @@ public abstract class WheelOfFortune extends GuessingGame{
 
         return new GameRecord(score,"Player1");
     }
-
-    @Override
-    public boolean playNext(){
-        System.out.print("Do you want to play the next game? (y/n): ");
-        Scanner scanner = new Scanner(System.in);
-        String response = scanner.nextLine().trim().toLowerCase();
-        return response.equals("y");
-
-    }
+//    @Override
+//    public boolean playNext(){
+//        System.out.print("Do you want to play the next game? (y/n): ");
+//        Scanner scanner = new Scanner(System.in);
+//        String response = scanner.nextLine().trim().toLowerCase();
+//        return response.equals("y");
+//
+//    }
 }

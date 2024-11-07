@@ -1,9 +1,6 @@
 public abstract class Game {
 
-    /** Method to play multiple games until the user decides to stop
-     *
-     * @return return all games records
-     */
+    //Method to play multiple games until the user decides to stop
     public AllGamesRecord playAll(){
         AllGamesRecord allGamesRecord=new AllGamesRecord();
         int roundNumber=1;
@@ -19,6 +16,10 @@ public abstract class Game {
         return allGamesRecord;
     }
 
+
+   // Abstract method to play a single game.
     abstract GameRecord play();
+
+   // Abstract method to determine if the player wants to play another game.
     abstract boolean playNext();
 }

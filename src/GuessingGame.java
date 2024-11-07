@@ -1,9 +1,6 @@
 import java.util.Scanner;
 
-/**
- * the superclass
- */
-
+// this class provides basic setup for the WOF game and Mastermind Game
 public abstract class GuessingGame extends Game{
     //Instance variables
     protected String phrase;
@@ -12,12 +9,15 @@ public abstract class GuessingGame extends Game{
     protected static final int INITIAL_SCORE = 100;
     protected static final int SCORE_DEDUCTION = 10;
 
+    //constructor to initialize
     public GuessingGame(){
     }
 
+    //Abstract method to generate the hidden phrase based on the original phrase.
     abstract void generateHiddenPhrase();
-    //abstract void processGuess(char guess);
 
+
+    //method used to ask if the player wants to play the next game.
     @Override
     public boolean playNext(){
         System.out.print("Do you want to play the next game? (y/n): ");

@@ -2,18 +2,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// class to record all games
 public class AllGamesRecord {
     private List<GameRecord> gameRecords;
 
+    //constructor to initialize
     public AllGamesRecord(){
         this.gameRecords=new ArrayList<>();
     }
 
+    // method to add a game record
     public void add(GameRecord gameRecord){
         gameRecords.add(gameRecord);
     }
 
-
+    // calculate all gameRecords average
     public double average(){
         double totalScore=0;
         for(GameRecord gameRecord:gameRecords){
@@ -23,6 +26,7 @@ public class AllGamesRecord {
         return Math.round(ave * 100.0) / 100.0;
     }
 
+    // calculate the same player gameRecord
    public double average(String playerId){
         double totalScoreID=0;
         int count=0;
@@ -36,11 +40,13 @@ public class AllGamesRecord {
        return Math.round(aveID * 100.0) / 100.0;
    }
 
+    // List the first n number of highGameRecords
     public ArrayList<GameRecord> highGameList(int n){
         Collections.sort(gameRecords);
         return new ArrayList<>(gameRecords.subList(0,n));
     }
 
+    // List the first n number of highGameRecords under one player
     public ArrayList<GameRecord> highGameList(String playerId, int n){
         List<GameRecord> playerScore=new ArrayList<>();
         for(GameRecord gameRecord:gameRecords){
@@ -52,6 +58,8 @@ public class AllGamesRecord {
         return new ArrayList<>(playerScore.subList(0,n));
 
     }
+
+    // toString Method to printout string format
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder();
@@ -62,6 +70,7 @@ public class AllGamesRecord {
         return sb.toString();
     }
 
+    // equals methods to compare content
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

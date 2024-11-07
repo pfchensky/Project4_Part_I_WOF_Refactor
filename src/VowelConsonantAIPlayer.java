@@ -1,19 +1,21 @@
 import java.util.HashSet;
 import java.util.Set;
 
-
+//generate letter first by vowel then by consonant
 public class VowelConsonantAIPlayer implements WheelOfFortunePlayer{
     private static final char[] VOWELS = {'a', 'e', 'i', 'o', 'u'};
     private Set<Character> guessedLetters;
     private String id;
     private int index;
 
+    //constructor to initialize
     public VowelConsonantAIPlayer(String id) {
         this.id = id;
         guessedLetters = new HashSet<>();
         reset();
     }
 
+    //get next guess
     @Override
     public char nextGuess() {
         while (index < VOWELS.length) {
@@ -33,12 +35,13 @@ public class VowelConsonantAIPlayer implements WheelOfFortunePlayer{
         }
         return ' ';
     }
-
+    //get player Id
     @Override
     public String playerId() {
         return id;
     }
 
+    //reset to start
     @Override
     public void reset() {
         guessedLetters.clear();
